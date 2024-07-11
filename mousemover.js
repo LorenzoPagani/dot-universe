@@ -34,7 +34,7 @@ function makeDots() {
 let dotNumber = 0;
 dotCounter = setInterval(() => {
     dotNumber = document.querySelectorAll('.dot').length;
-    document.getElementById('dotCounter').textContent = 'Current number of dots: ' + dotNumber;
+    document.getElementById('dotCounter').textContent = 'Live number of dots: ' + dotNumber;
 }, 1);
 
 // Function to constantly create dots
