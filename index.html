@@ -8,6 +8,10 @@
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Dot Universe</title>
         <style>
         .dot {
@@ -31,48 +35,64 @@
     </head>
     <body>
         <div class="container-md">
+
             <div class="row justify-content-center my-4">
                 <div class="col-11 col-md-7 my-bg rounded-3">
                     <div class="row">
-                        <h1 class="text-white text-center">Dot Universe</h1>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div id="black-hole"
-                            class="col d-flex justify-content-center mt-5">
-                            <div id="toggleBlackHole"
-                                class="btn btn-primary">Start Black Hole</div>
-                            <div id="toggleCreation"
-                                class="btn btn-info text-white mx-2">Start Dot
-                                Creation</div>
+                        <div class="col-9">
+                            <h1 class="text-white text-center">Dot Universe</h1>
                         </div>
+                        <div
+                            class="col-3 d-flex justify-content-center align-items-center">
+                            <button class="btn text-white"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample"><i
+                                    class="fa-solid fa-bars"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="collapseExample" class="collapse">
                         <div class="row justify-content-center">
-                            <div class="col d-flex justify-content-center">
-                                <h4 id="dotCounter"
-                                    class="text-white bg-dark px-3 my-2 rounded-pill">(live
-                                    dot number)</h4>
+                            <div id="black-hole"
+                                class="col d-flex justify-content-center mt-5">
+                                <div id="toggleBlackHole"
+                                    class="btn btn-primary">Start Black
+                                    Hole</div>
+                                <div id="toggleCreation"
+                                    class="btn btn-info text-white mx-2">Start
+                                    Dot
+                                    Creation</div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col d-flex justify-content-center">
+                                    <h4 id="dotCounter"
+                                        class="text-white bg-dark px-3 my-2 rounded-pill">Live
+                                        number of dots: 0</h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center my-3">
-                        <div class="col-8">
-                            <input type="range" class="form-range"
-                                id="speedSlider" min="1" max="1000" step="1"
-                                value="100">
-                            <label for="speedSlider"
-                                class="form-label text-white">Dot Creation
-                                Speed: <span
-                                    id="speedValue">100ms</span></label>
+                        <div class="row justify-content-center my-3">
+                            <div class="col-8">
+                                <input type="range" class="form-range"
+                                    id="speedSlider" min="1" max="1000" step="1"
+                                    value="100">
+                                <label for="speedSlider"
+                                    class="form-label text-white">Dot Creation
+                                    Speed: <span
+                                        id="speedValue">100ms</span></label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center my-3">
-                        <div class="col-8">
-                            <input type="range" class="form-range"
-                                id="blackHoleSlider" min="1000" max="10000"
-                                step="100" value="3000">
-                            <label for="blackHoleSlider"
-                                class="form-label text-white">Black Hole
-                                Transition Speed: <span
-                                    id="blackHoleValue">3000ms</span></label>
+                        <div class="row justify-content-center my-3">
+                            <div class="col-8">
+                                <input type="range" class="form-range"
+                                    id="blackHoleSlider" min="1000" max="10000"
+                                    step="100" value="3000">
+                                <label for="blackHoleSlider"
+                                    class="form-label text-white">Black Hole
+                                    Transition Speed: <span
+                                        id="blackHoleValue">3000ms</span></label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,21 +156,10 @@
             document.getElementById('dotCounter').textContent = 'Live number of dots: ' + dotNumber;
         }
 
-        // Update dot count at a lower frequency
+        // Update dot count 
         setInterval(updateDotCount, 500);
 
-        // Throttle the keydown event
-        let throttleTimeout;
-        document.addEventListener('keydown', () => {
-            if (!throttleTimeout) {
-                toggleDots();
-                throttleTimeout = setTimeout(() => {
-                    throttleTimeout = null;
-                }, 500);
-            }
-        });
-
-        // Function to toggle dot creation on and off multiple times
+        // Function to toggle dot creation on and off 
         let dotYield = true;
 
         function toggleDots() {
@@ -169,7 +178,7 @@
         // Function to continuously move the dots to the center and eliminate them
         let bhToggle = false;
         let startHole;
-        let blackHoleSpeed = 3000; // Default speed
+        let blackHoleSpeed = 3000; 
 
         function blackHole() {
             if (bhToggle) {
@@ -187,7 +196,7 @@
                             dot.remove();
                         }, blackHoleSpeed);
                     });
-                }, 500); // Adjust interval for performance
+                }, 500); 
                 bhToggle = true;
             }
         }
@@ -220,5 +229,9 @@
             blackHoleValue.textContent = `${blackHoleSpeed}ms`;
         });
     </script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     </body>
 </html>
