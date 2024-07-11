@@ -9,176 +9,7 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous">
         <title>Dot Universe</title>
-
-    </head>
-    <body>
-        <div class="container-md">
-
-            <div class="row justify-content-center my-4">
-                <div class="col-11 col-md-7 my-bg rounded-3">
-                    <div class="row">
-                        <h1 class="text-white text-center">Dot Universe</h1>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div id="black-hole"
-                            class="col d-flex justify-content-center mt-5">
-                            <div id="toggleBlackHole"
-                                class=" btn btn-primary">Start
-                                Black Hole
-                            </div>
-                            <div
-                                id="toggleCreation"
-                                class=" btn btn-info text-white mx-2">Start Dot
-                                Creation
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col d-flex justify-content-center ">
-                                <h4 id="dotCounter"
-                                    class="text-white bg-dark px-3 my-2 rounded-pill">(live
-                                    dot
-                                    number)
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            
-// Function to generate a random color
-function getRandomColor() {
-    // Generate random RGB values
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    // Construct a color string in RGB format
-    return `rgb(${r},${g},${b})`;
-}
-
-// Function to create dots
-function makeDots() {
-    let x = 0;
-    let y = 0;
-    let screenWidth = window.innerWidth;
-    let screenHeight = window.innerHeight;
-
-    return function () {
-
-        x = Math.floor(Math.random() * screenWidth - 20);
-        y = Math.floor(Math.random() * screenHeight - 20);
-        let newDot = document.createElement('div');
-        newDot.classList.add('dot');
-        newDot.style.backgroundColor = getRandomColor();
-        document.body.appendChild(newDot);
-        newDot.style.top = y + 'px';
-        newDot.style.left = x + 'px';
-    }
-
-};
-
-// dot counting variable
-let dotNumber = 0;
-dotCounter = setInterval(() => {
-    dotNumber = document.querySelectorAll('.dot').length;
-    document.getElementById('dotCounter').textContent = 'Live number of dots: ' + dotNumber;
-}, 1);
-
-// Function to constantly create dots
-let dotToggle = false;
-let intervalId;
-function dotCreation() {
-    if (dotToggle) {
-        document.getElementById('toggleCreation').innerHTML = 'Start Dot Creation';
-        clearInterval(intervalId);
-        dotToggle = false;
-    }
-    else {
-        document.getElementById('toggleCreation').innerHTML = 'Stop Dot Creation';
-        intervalId = setInterval(makeDots(), 0.1);
-        dotToggle = true;
-    }
-};
-// event listener to start and stop the dot creation
-document.getElementById('toggleCreation').addEventListener('click', dotCreation);
-
-// function to toggle dot creation on and off multiple times
-document.addEventListener('keydown', toggleDots);
-let dotYield = true;
-function toggleDots() {
-    if (dotYield) {
-        clearInterval(intervalId);
-        dotYield = false;
-    } else {
-        intervalId = setInterval(makeDots(), 0.5);
-        dotYield = true;
-    }
-
-}
-
-
-/* // Function to log the mouse coordinates
-document.addEventListener('mousemove', logMouseCoordinates);
-function logMouseCoordinates(event) {
-    const x = event.clientX;
-    const y = event.clientY;
-    document.getElementById('x').textContent = x;
-    document.getElementById('y').textContent = y;
-}
- */
-/* // event to move the dots to the center and eliminate them
-document.addEventListener('keyup', function (event) {
-    let dotx = event.clientX / 300;
-    let doty = event.clientY / 100;
-    document.querySelectorAll('.dot').forEach(function (dot) {
-
-        let currentx = parseFloat(dot.style.left);
-        let currenty = parseFloat(dot.style.top);
-        dot.style.left = 50 + '%';
-        dot.style.top = 50 + '%';
-        dot.style.transition = '1s';
-        setTimeout(() => {
-            dot.remove();
-
-        }, 1000);
-
-    });
-}); */
-
-// function to continuously move the dots to the center and eliminate them
-let bhToggle = false;
-let startHole;
-
-function blackHole() {
-    if (bhToggle) {
-        document.getElementById('toggleBlackHole').innerHTML = 'Start Black Hole';
-        clearInterval(startHole);
-        bhToggle = false;
-    } else {
-        document.getElementById('toggleBlackHole').innerHTML = 'Stop Black Hole';
-        startHole = setInterval(() => {
-            document.querySelectorAll('.dot').forEach(function (dot) {
-                dot.style.left = '50%';
-                dot.style.top = '50%';
-                dot.style.transition = '3s ease-in';
-                setTimeout(() => {
-                    dot.remove();
-                }, 3000);
-            });
-        }, 50);
-        bhToggle = true;
-    }
-    console.log(bhToggle);
-}
-
-
-//event listener to start the black hole effect
-document.getElementById('toggleBlackHole').addEventListener('click', blackHole);
-        </script>
-    </body>
-
-    <style>
+        <style>
         .dot {
             position: absolute;
             width: 20px;
@@ -188,7 +19,6 @@ document.getElementById('toggleBlackHole').addEventListener('click', blackHole);
             box-shadow: inset 2px -6px 5px 0px rgb(0 0 0 / 55%);
             filter: brightness(110%);
             z-index: -1;
-            
         }
         body {
             background-color: black;
@@ -198,4 +28,197 @@ document.getElementById('toggleBlackHole').addEventListener('click', blackHole);
             background-color: rgba(68, 68, 68, 0.726);
         }
     </style>
+    </head>
+    <body>
+        <div class="container-md">
+            <div class="row justify-content-center my-4">
+                <div class="col-11 col-md-7 my-bg rounded-3">
+                    <div class="row">
+                        <h1 class="text-white text-center">Dot Universe</h1>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div id="black-hole"
+                            class="col d-flex justify-content-center mt-5">
+                            <div id="toggleBlackHole"
+                                class="btn btn-primary">Start Black Hole</div>
+                            <div id="toggleCreation"
+                                class="btn btn-info text-white mx-2">Start Dot
+                                Creation</div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col d-flex justify-content-center">
+                                <h4 id="dotCounter"
+                                    class="text-white bg-dark px-3 my-2 rounded-pill">(live
+                                    dot number)</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center my-3">
+                        <div class="col-8">
+                            <input type="range" class="form-range"
+                                id="speedSlider" min="1" max="1000" step="1"
+                                value="100">
+                            <label for="speedSlider"
+                                class="form-label text-white">Dot Creation
+                                Speed: <span
+                                    id="speedValue">100ms</span></label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center my-3">
+                        <div class="col-8">
+                            <input type="range" class="form-range"
+                                id="blackHoleSlider" min="1000" max="10000"
+                                step="100" value="3000">
+                            <label for="blackHoleSlider"
+                                class="form-label text-white">Black Hole
+                                Transition Speed: <span
+                                    id="blackHoleValue">3000ms</span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        // Function to generate a random color
+        function getRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r},${g},${b})`;
+        }
+
+        // Function to create dots
+        function makeDots() {
+            let screenWidth = window.innerWidth;
+            let screenHeight = window.innerHeight;
+
+            return function () {
+                let x = Math.floor(Math.random() * (screenWidth - 20));
+                let y = Math.floor(Math.random() * (screenHeight - 20));
+                let newDot = document.createElement('div');
+                newDot.classList.add('dot');
+                newDot.style.backgroundColor = getRandomColor();
+                newDot.style.top = y + 'px';
+                newDot.style.left = x + 'px';
+                return newDot;
+            };
+        }
+
+        const createDot = makeDots();
+        const dotContainer = document.createDocumentFragment();
+
+        // Function to constantly create dots
+        let dotToggle = false;
+        let intervalId;
+        let creationSpeed = 100; // Default speed
+
+        function dotCreation() {
+            if (dotToggle) {
+                document.getElementById('toggleCreation').innerHTML = 'Start Dot Creation';
+                clearInterval(intervalId);
+                dotToggle = false;
+            } else {
+                document.getElementById('toggleCreation').innerHTML = 'Stop Dot Creation';
+                intervalId = setInterval(() => {
+                    dotContainer.appendChild(createDot());
+                    document.body.appendChild(dotContainer);
+                }, creationSpeed);
+                dotToggle = true;
+            }
+        }
+
+        // Event listener to start and stop the dot creation
+        document.getElementById('toggleCreation').addEventListener('click', dotCreation);
+
+        // Function to count dots
+        function updateDotCount() {
+            const dotNumber = document.querySelectorAll('.dot').length;
+            document.getElementById('dotCounter').textContent = 'Live number of dots: ' + dotNumber;
+        }
+
+        // Update dot count at a lower frequency
+        setInterval(updateDotCount, 500);
+
+        // Throttle the keydown event
+        let throttleTimeout;
+        document.addEventListener('keydown', () => {
+            if (!throttleTimeout) {
+                toggleDots();
+                throttleTimeout = setTimeout(() => {
+                    throttleTimeout = null;
+                }, 500);
+            }
+        });
+
+        // Function to toggle dot creation on and off multiple times
+        let dotYield = true;
+
+        function toggleDots() {
+            if (dotYield) {
+                clearInterval(intervalId);
+                dotYield = false;
+            } else {
+                intervalId = setInterval(() => {
+                    dotContainer.appendChild(createDot());
+                    document.body.appendChild(dotContainer);
+                }, creationSpeed);
+                dotYield = true;
+            }
+        }
+
+        // Function to continuously move the dots to the center and eliminate them
+        let bhToggle = false;
+        let startHole;
+        let blackHoleSpeed = 3000; // Default speed
+
+        function blackHole() {
+            if (bhToggle) {
+                document.getElementById('toggleBlackHole').innerHTML = 'Start Black Hole';
+                clearInterval(startHole);
+                bhToggle = false;
+            } else {
+                document.getElementById('toggleBlackHole').innerHTML = 'Stop Black Hole';
+                startHole = setInterval(() => {
+                    document.querySelectorAll('.dot').forEach((dot) => {
+                        dot.style.left = '50%';
+                        dot.style.top = '50%';
+                        dot.style.transition = `${blackHoleSpeed}ms ease-in`;
+                        setTimeout(() => {
+                            dot.remove();
+                        }, blackHoleSpeed);
+                    });
+                }, 500); // Adjust interval for performance
+                bhToggle = true;
+            }
+        }
+
+        // Event listener to start the black hole effect
+        document.getElementById('toggleBlackHole').addEventListener('click', blackHole);
+
+        // Slider to adjust dot creation speed
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+
+        speedSlider.addEventListener('input', (event) => {
+            creationSpeed = event.target.value;
+            speedValue.textContent = `${creationSpeed}ms`;
+            if (dotToggle) {
+                clearInterval(intervalId);
+                intervalId = setInterval(() => {
+                    dotContainer.appendChild(createDot());
+                    document.body.appendChild(dotContainer);
+                }, creationSpeed);
+            }
+        });
+
+        // Slider to adjust black hole transition speed
+        const blackHoleSlider = document.getElementById('blackHoleSlider');
+        const blackHoleValue = document.getElementById('blackHoleValue');
+
+        blackHoleSlider.addEventListener('input', (event) => {
+            blackHoleSpeed = event.target.value;
+            blackHoleValue.textContent = `${blackHoleSpeed}ms`;
+        });
+    </script>
+    </body>
 </html>
